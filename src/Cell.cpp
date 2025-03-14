@@ -11,13 +11,11 @@ Cell::~Cell()
 {
 
 }
-void Cell::addMine(bool mine)
-{
-
+void Cell::addMine(bool mine){
+    _mine = mine; // ajouter un mine Si mine es true, la celda contendrá una mina. Si es false, la celda seguirá sin mina.
 }
-int Cell::get_neighbours()
-{
-    return 0;
+int Cell::get_neighbours(){
+    return _neighbours; //Ahora devolverá el número correcto de minas vecinas. avant il retourné 0
 }
 void Cell::get_neighbours(std::vector<std::vector<Cell>> &grid, size_t x, size_t y)
 {
@@ -36,13 +34,11 @@ void Cell::get_neighbours(std::vector<std::vector<Cell>> &grid, size_t x, size_t
         }
     }
 }
-bool Cell::is_discovered()
-{
-    return false;
+bool Cell::is_discovered(){
+    return _discovered;
 }
-bool Cell::is_a_mine()
-{
-    return true;
+bool Cell::is_a_mine(){
+    return _mine;
 }
 bool Cell::discover(std::vector<std::vector<Cell>> &grid, size_t x, size_t y)
 {
@@ -64,15 +60,12 @@ bool Cell::discover(std::vector<std::vector<Cell>> &grid, size_t x, size_t y)
     }
     return false;
 }
-bool Cell::has_neighbours()
-{
-    return false;
+bool Cell::has_neighbours(){
+    return _neighbours > 0;
 }
-bool Cell::is_flagged()
-{
-    return false;
+bool Cell::is_flagged(){
+    return _flagged;
 }
-void Cell::flag()
-{
-
+void Cell::flag(){
+    _flagged = true;
 }
