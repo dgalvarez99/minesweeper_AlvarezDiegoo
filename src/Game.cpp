@@ -55,7 +55,8 @@ void Game::begin(size_t mines)
 void Game::discover(size_t x, size_t y)
 {
     size_t discovered = 0;
-    if (x >= 0 && x < _Grid.size() && y >= 0 && y < _Grid[x].size())
+    //if (x >= 0 && x < _Grid.size() && y >= 0 && y < _Grid[x].size())
+    if (x >= 0 && x < get_width() && y >= 0 && y < get_height())  // Usa get_width() y get_height() en lugar de  _Grid.size()
     {
         _Grid[x][y].discover(_Grid, x, y);
         for (size_t i = 0; i < _Grid.size(); i++)
@@ -105,13 +106,12 @@ void Game::draw()
         move(x, y);
     }
 }
-int Game::get_width()
-{
-    return 1;
+int Game::get_width(){
+    return _width;  // Devuelve el número de columnas de la cuadrícula
 }
-int Game::get_height()
-{
-    return 1;
+int Game::get_height(){
+    return _height;  // Devuelve el número de filas de la cuadrícula
+}
 }
 bool Game::has_lost()
 {
